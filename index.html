@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="inner">
+        <div class="box">
+          <p class="number" id="tweetme">
+            <img src="./twitter.svg" alt="" />
+          </p>
+          <div class="text">
+            <i class="start-quote fas fa-quote-left"> </i>
+            <p class="quotes" id="quotes"></p>
+            <p class="author" id="author"></p>
+            <i class="end-quote fas fa-quote-right"> </i>
+          </div>
+          <label class="button">
+            <p id="getrandquotes">Get Quotes</p>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const quotes = document.getElementById("quotes");
+      const author = document.getElementById("author");
+      const getrandquotes = document.getElementById("getrandquotes");
+      const tweetme = document.getElementById("tweetme");
+      let alldata = "";
+      let quotesAllData = "";
+
+      const postOnTwitter = () => {
+        const post = `https://twitter.com/intent/tweet?text=${quotesAllData.text} ${quotesAllData.author}`;
+        window.open(post);
+      };
+
+      const getRandomQuotes = () => {
+        const random = Math.floor(Math.random() * 20);
+        quotesAllData = alldata[random];
+        // console.log("random:", random);
+        quotes.innerText = `${quotesAllData.text}`;
+
+        quotesAllData.author == null
+          ? (author.innerText = "unKnow")
+          : (author.innerText = `${quotesAllData.author}`);
+      };
+
+      const getQuotes = async () => {
+        const api = "https://type.fit/api/quotes";
+
+        try {
+          let data = await fetch(api);
+          alldata = await data.json();
+          getRandomQuotes();
+          //   console.log("data:", alldata[0].text);
+          //   console.log("data_author:", alldata[0].author);
+        } catch (err) {
+          console.log("err:", err);
+        }
+      };
+      tweetme.addEventListener("click", postOnTwitter);
+      getrandquotes.addEventListener("click", getRandomQuotes);
+      getQuotes();
+    </script>
+  </body>
+</html>

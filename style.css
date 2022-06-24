@@ -1,0 +1,55 @@
+body {
+  font-family: cursive;
+  height: 100%;
+  background-image: url("./background.gif");
+  /* background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; */
+}
+
+.inner {
+  width: 30vw;
+  padding: 20px;
+  margin: auto;
+  background-color: aquamarine;
+  margin-top: 10%;
+  border-radius: 50px 10px;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+}
+.number {
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+.text {
+  display: flex;
+  flex-direction: column;
+}
+.quotes {
+  display: flex;
+  justify-content: center;
+}
+.author {
+  display: flex;
+  justify-content: flex-end;
+}
+.end-quote {
+  display: flex;
+  justify-content: flex-end;
+}
+.button {
+  display: flex;
+  justify-content: center;
+}
+#getrandquotes {
+  background-color: rgb(177, 115, 115);
+  border-radius: 10px;
+  /* display: flex;
+  justify-content: center; */
+  width: fit-content;
+  padding: 5px;
+  cursor: pointer;
+}
